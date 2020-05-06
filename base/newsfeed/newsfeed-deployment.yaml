@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: newsfeed-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: newsfeed
+  template:
+    metadata:
+      labels:
+        component: newsfeed
+    spec:
+      containers:
+        - name: newsfeed
+          image: 510158725010.dkr.ecr.us-east-1.amazonaws.com/goxhere/newsfeed:c81c98c0af2fdcc0d940363cce1e5cb95ecb9376
+          ports:
+            - containerPort: 8080
+          env:
+      imagePullSecrets:
+        - name: awsecr-cred

@@ -1,0 +1,25 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+bases:
+- ../../base/cassandra
+
+resources:
+- ./newsfeed-cassandra-persistent-volume.yaml
+
+images:
+- name: cassandra
+  newTag: '3.11'
+
+patchesJson6902:
+- target:
+    version: v1
+    kind: PersistentVolumeClaim
+    name: newsfeed-cassandra-persistent-volume-claim
+  path: patch-cassandra-pvc.yaml
+- target:
+    group: apps
+    version: v1
+    kind: Deployment
+    name: newsfeed-cassandra-deployment
+  path: patch-cassandra.yaml

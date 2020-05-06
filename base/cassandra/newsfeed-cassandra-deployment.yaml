@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: newsfeed-cassandra-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: newsfeed-cassandra
+  template:
+      metadata:
+        labels:
+          component: newsfeed-cassandra
+      spec:
+        volumes:
+            - name: newsfeed-cassandra-storage
+              persistentVolumeClaim:
+                claimName: newsfeed-cassandra-persistent-volume-claim
+        containers:
+            - name: cassandra
+              image: cassandra:3.11
+              ports:
+                - containerPort: 9042
+              volumeMounts:
+                - name: newsfeed-cassandra-storage
+                  mountPath: /var/lib/cassandra
