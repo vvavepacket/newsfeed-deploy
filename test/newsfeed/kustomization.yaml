@@ -6,7 +6,7 @@ bases:
 
 images:
 - name: 510158725010.dkr.ecr.us-east-1.amazonaws.com/goxhere/newsfeed
-  newTag: b4b9d57586bbc8f3b127f82053847052024e87d4
+  newTag: 08540d48dac7d9d04062de1dddee094b0ffbcef8
 
 patchesJson6902:
 - path: patch-newsfeed.yaml
