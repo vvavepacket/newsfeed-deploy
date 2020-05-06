@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+bases:
+- ../../base/newsfeed
+
+images:
+- name: 510158725010.dkr.ecr.us-east-1.amazonaws.com/goxhere/newsfeed
+  newTag: 08540d48dac7d9d04062de1dddee094b0ffbcef8
+
+patchesJson6902:
+- path: patch-newsfeed.yaml
+  target:
+    group: apps
+    kind: Deployment
+    name: newsfeed-deployment
+    version: v1

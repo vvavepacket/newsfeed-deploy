@@ -1,0 +1,11 @@
+- op: add
+  path: /spec/template/spec/tolerations
+  value:
+    - key: "env"
+      operator: "Equal"
+      value: "prod"
+      effect: "NoSchedule"
+- op: add
+  path: /spec/template/spec/nodeSelector
+  value:
+    env: prod
